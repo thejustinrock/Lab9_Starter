@@ -95,14 +95,108 @@
       let firstNum = document.querySelector('#first-num').value;
       let secondNum = document.querySelector('#second-num').value;
       let operator = document.querySelector('#operator').value;
+      try {
       output.innerHTML = eval(`${firstNum} ${operator} ${secondNum}`);
+      } catch (err) {
+        throw new ReferenceError('The input was an error');
+      } finally {
+        console.log('The input was complete');
+      }
     });
 
     let errorBtns = Array.from(document.querySelectorAll('#error-btns > button'));
+    
+    var theButton = document.getElementById('error-btns').querySelectorAll('button');
 
+    theButton[0].addEventListener('click', function(){
+      console.log('Console Log Demo');
+    });
+
+    theButton[1].addEventListener('click', function(){
+      console.error('Console Error Demo');
+    });
+
+    theButton[2].addEventListener('click', function(){
+      console.count('Console Count Button');
+    });
+
+    theButton[3].addEventListener('click', function(){
+      console.warn('Console Warn Button');
+    });
+
+    theButton[4].addEventListener('click', function(){
+      console.assert(1+2==4);
+    });
+
+    theButton[5].addEventListener('click', function(){
+      console.clear();
+    });
+
+    theButton[6].addEventListener('click', function(){
+      console.dir(theButton[6]);
+    });
+
+    theButton[7].addEventListener('click', function(){
+      console.dirxml(theButton[7]);
+    });
+
+    theButton[8].addEventListener('click', function(){
+      console.group('Console Group Demo');
+    });
+
+    theButton[9].addEventListener('click', function(){
+      console.groupEnd('Console Group Demo');
+    });
+
+    theButton[10].addEventListener('click', function(){
+      console.table([{name: 'Software Engineering', number: '110'},
+      {name: 'Programming Language', number: '130'}, 
+      {name: 'Advanced Software Engineering', number: '112'}]);
+    });
+
+    theButton[11].addEventListener('click', function(){
+      console.time();
+    });
+
+    theButton[12].addEventListener('click', function(){
+      console.timeEnd();
+    });
+
+    theButton[13].addEventListener('click', function(){
+      const first = () => { second(); };
+      const second = () => { third(); };
+      const third = () => { console.trace(); };
+      first();
+    });
+
+    theButton[14].addEventListener('click', function(){
+      throw new TheError();
+    });
+
+    class TheError extends Error {
+      constructor(message) {
+        super(message);
+        this.name = 'The Error';
+      }
+    }
+
+    window.onerror = function (error, url, message){
+      console.log(error)
+      console.log(url)
+      console.log(message)
+    }
     // Start your code here
     // You may move this JS to another file if you wish
   </script>
+
+<script src="https://cdn.trackjs.com/agent/v3/latest/t.js"></script>
+<script>
+  window.TrackJS && TrackJS.install({ 
+    token: "2c08bf7c78144824b24cb22c54fce4ff"
+    // for more configuration options, see https://docs.trackjs.com
+  });
+</script>
+                        
 </body>
 
 </html>
